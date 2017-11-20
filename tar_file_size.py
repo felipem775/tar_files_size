@@ -95,7 +95,7 @@ def split_in_max_size(max_size, files):
     lists_files.append(current_tar_files)
     return lists_files[1:]
 
-def do_tar_files(filename, files):
+def do_tar(filename, files):
     tar = tarfile.open(filename, "w")
     for f in files:
         tar.add(f)
@@ -125,5 +125,5 @@ if __name__ == '__main__':
     for l in list_tar:
         tar_filename = "{0}.{1:02d}of{2:02d}.tar".format(output,number_current_tar, number_current_tar)
         number_current_tar += 1
-        do_tar_files(tar_filename, l)
+        do_tar(tar_filename, l)
     

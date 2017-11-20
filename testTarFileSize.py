@@ -29,7 +29,7 @@ class TestTarFileSize(unittest.TestCase):
         for l in list_tar:
             self.assertNotEqual(len(l),0)
 
-    def test_do_tar_files(self):
+    def test_do_tar(self):
         filelist = ['test/files/0Dxv3ZsKZo8l', 'test/files/fdtg9OJjJy83', 'test/files/k7RZc10CYT4j']
         output = "test/tmp_test_do_tar_files.tar"
 
@@ -37,7 +37,7 @@ class TestTarFileSize(unittest.TestCase):
             os.remove(output)
         self.assertFalse(os.path.isfile(output))
 
-        tar_file_size.do_tar_files(output, filelist)
+        tar_file_size.do_tar(output, filelist)
         self.assertTrue(os.path.isfile(output))
         
 
