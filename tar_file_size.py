@@ -119,11 +119,11 @@ if __name__ == '__main__':
     list_tar = split_in_max_size(max_file_per_tar, complete_list_files)
 
     # Values for naming tar files
-    number_of_tar = len(list_tar)
-    number_current_tar = 0
+    number_total_tar = len(list_tar)
+    number_current_tar = 1
     # Do tar files
     for l in list_tar:
-        tar_filename = "{0}.{1:02d}of{2:02d}.tar".format(output,number_current_tar, number_current_tar)
+        tar_filename = "{0}.{1:02d}of{2:02d}.tar".format(output,number_current_tar, number_total_tar)
         number_current_tar += 1
         do_tar(tar_filename, l)
     
