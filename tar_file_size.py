@@ -5,9 +5,11 @@ __author__ = "FelipeM"
 __version__ = "0.1"
 __status__ = "Development"
 
-import os
 import argparse
+import logging
+import os
 import tarfile
+
 import human2bytes
 
 def filesInDir(path):
@@ -41,17 +43,33 @@ def do_tar(filename, files):
         tar.add(f)
     tar.close()
 
+def set_log_level_from_verbose(level):
+    if not level:
+        logging.basicConfig(level='ERROR')
+    elif level == 1:
+        logging.basicConfig(level='WARNING')
+    elif level == 2:
+        logging.basicConfig(level='INFO')
+    elif level >= 3:
+        logging.basicConfig(level='DEBUG')
+    else:
+        logger.critical("UNEXPLAINED NEGATIVE COUNT!")
+    
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="path of files", type=str)
     parser.add_argument("size", help="max size per tar", type=str)
     parser.add_argument("output", help="ouput file name", type=str)
+    parser.add_argument("-v", "--verbose", help="add verbose info", action='count')
     args = parser.parse_args()
 
     # Get parameters
     max_file_per_tar = human2bytes.human2bytes(args.size)
     path = args.path
     output = args.output 
+
+    set_log_level_from_verbose(args.verbose)
     
     # Get list of files
     complete_list_files = filesInDir(path)
