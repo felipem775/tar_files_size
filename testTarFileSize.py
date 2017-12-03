@@ -40,7 +40,7 @@ class TestTarFileSize(unittest.TestCase):
         tar_file_size.do_tar(output, filelist)
         self.assertTrue(os.path.isfile(output))
         
-
+    @unittest.skip("Movido")
     def test_human2bytes(self):
         number_bytes = tar_file_size.human2bytes("1 K")
         self.assertEqual(number_bytes, 1024)
