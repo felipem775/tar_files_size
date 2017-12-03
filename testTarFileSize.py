@@ -39,20 +39,7 @@ class TestTarFileSize(unittest.TestCase):
 
         tar_file_size.do_tar(output, filelist)
         self.assertTrue(os.path.isfile(output))
-        
-    @unittest.skip("Movido")
-    def test_human2bytes(self):
-        number_bytes = tar_file_size.human2bytes("1 K")
-        self.assertEqual(number_bytes, 1024)
-        number_bytes = tar_file_size.human2bytes("1K")
-        self.assertEqual(number_bytes, 1024)
-        number_bytes = tar_file_size.human2bytes("5M")
-        self.assertEqual(number_bytes, 5242880)
-        number_bytes = tar_file_size.human2bytes("5 G")
-        self.assertEqual(number_bytes, 5368709120)
-        number_bytes = tar_file_size.human2bytes("1000")
-        self.assertEqual(number_bytes, 1000)
-        
+       
         
 if __name__ == '__main__':
     unittest.main()
