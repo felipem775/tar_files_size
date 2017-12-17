@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "FelipeM"
-__version__ = "0.1"
+__version__ = "0.2"
 __status__ = "Development"
 
 import argparse
@@ -80,8 +80,7 @@ if __name__ == '__main__':
 
     # Do a list of files in tar
     list_tar = split_in_max_size(max_file_per_tar, complete_list_files)
-    logging.debug("list_tar={0}".format(list_tar))
-    
+    logging.debug("list_tar={0}".format)
     # Values for naming tar files
     number_total_tar = len(list_tar)
     number_current_tar = 1
