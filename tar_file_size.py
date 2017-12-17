@@ -53,10 +53,11 @@ def set_log_level_from_verbose(level):
     elif level >= 3:
         logging.basicConfig(level='DEBUG')
     else:
-        logger.critical("UNEXPLAINED NEGATIVE COUNT!")
+        logging.critical("UNEXPLAINED NEGATIVE COUNT!")
     
 
 if __name__ == '__main__':
+    
     parser = argparse.ArgumentParser()
     parser.add_argument("path", help="path of files", type=str)
     parser.add_argument("size", help="max size per tar", type=str)
@@ -65,17 +66,22 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Get parameters
+    set_log_level_from_verbose(args.verbose)
     max_file_per_tar = human2bytes.human2bytes(args.size)
     path = args.path
     output = args.output 
 
-    set_log_level_from_verbose(args.verbose)
+    logging.debug("tar_file_size running")
+    logging.debug("max_file_per_tar={0}\npath{1}\noutput{2}".format(max_file_per_tar, path, output))
     
     # Get list of files
     complete_list_files = filesInDir(path)
+    logging.debug("complete_list_files={0}".format(complete_list_files))
+
     # Do a list of files in tar
     list_tar = split_in_max_size(max_file_per_tar, complete_list_files)
-
+    logging.debug("list_tar={0}".format(list_tar))
+    
     # Values for naming tar files
     number_total_tar = len(list_tar)
     number_current_tar = 1
